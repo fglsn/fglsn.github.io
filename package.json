@@ -7,9 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
+    "homepage": "https://fglsn.github.io/fglsn.github.io",
     "preview": "vite preview",
-    "predeploy": "pnpm build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@linaria/react": "^6.2.1",
