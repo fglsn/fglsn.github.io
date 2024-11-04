@@ -13,6 +13,16 @@ const Wrapper = styled.div`
 	align-items: center;
 `;
 
+const ResetButton = styled.button`
+	margin-bottom: 12px;
+	padding: 8px 16px;
+	border-radius: 6px;
+	border: none;
+	color: white;
+	background-color: #007bff;
+	font-size: 14px;
+`;
+
 const getInitialPortionsCount = (): PortionsCount => {
 	const savedPortionsCount = localStorage.getItem('portionsCount');
 	return savedPortionsCount
@@ -41,15 +51,25 @@ const useCountPortions = () => {
 		localStorage.setItem('portionsCount', JSON.stringify(portionsCount));
 	}, [portionsCount]);
 
-	return { portionsCount, handleClick };
+	const reset = () => {
+		setPortionsCount({
+			protein: 0,
+			carbs: 0,
+			fat: 0,
+			veggies: 0,
+		});
+	};
+
+	return { portionsCount, handleClick, reset };
 };
 
 function App() {
-	const { portionsCount, handleClick } = useCountPortions();
+	const { portionsCount, handleClick, reset } = useCountPortions();
 	const variants: Variant[] = ['protein', 'carbs', 'fat', 'veggies'];
 
 	return (
 		<Wrapper>
+			<ResetButton onClick={reset}>Reset</ResetButton>
 			{variants.map(variant => (
 				<Row
 					key={variant}
