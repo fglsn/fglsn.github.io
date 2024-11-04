@@ -13,13 +13,22 @@ const Wrapper = styled.div`
 	align-items: center;
 `;
 
+const getInitialPortionsCount = (): PortionsCount => {
+	const savedPortionsCount = localStorage.getItem('portionsCount');
+	return savedPortionsCount
+		? JSON.parse(savedPortionsCount)
+		: {
+				protein: 0,
+				carbs: 0,
+				fat: 0,
+				veggies: 0,
+			};
+};
+
 const useCountPortions = () => {
-	const [portionsCount, setPortionsCount] = useState<PortionsCount>({
-		protein: 0,
-		carbs: 0,
-		fat: 0,
-		veggies: 0,
-	});
+	const [portionsCount, setPortionsCount] = useState<PortionsCount>(
+		getInitialPortionsCount
+	);
 
 	const handleClick = (index: number, variant: Variant) => {
 		setPortionsCount(prev => ({
