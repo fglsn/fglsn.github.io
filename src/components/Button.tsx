@@ -9,8 +9,8 @@ interface ButtonProps {
 }
 
 const StyledButton = styled.button<{ $isSelected: boolean; $variant: Variant }>`
-	width: 20px;
-	height: 20px;
+	width: 25px;
+	height: 25px;
 	border-radius: 20px;
 
 	background-color: ${({ $variant, $isSelected }) =>
